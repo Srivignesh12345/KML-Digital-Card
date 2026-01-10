@@ -130,3 +130,10 @@ function openLightbox(src) {
 function closeLightbox() {
   document.getElementById("lightbox").style.display = "none";
 }
+function toggleMenu() {
+  document.getElementById("navLinks").classList.toggle("active");
+}
+
+function closeMenu() {
+  document.getElementById("navLinks").classList.remove("active");
+}

@@ -1,6 +1,7 @@
 <div align="center">
 
 # 🧪 Kalpana Microbiology Lab  
+
 ### Digital Card & Diagnostic Website
 
 Trusted · Accurate · Ethical Diagnostic Services  
@@ -9,7 +10,7 @@ Trusted · Accurate · Ethical Diagnostic Services
 ---
 
 🌐 **Live Website**  
-👉 https://kalpana-microbiology-lab.netlify.app *(replace with final URL)*
+👉 <https://kalpana-microbiology-lab.netlify.app> *(replace with final URL)*
 
 </div>
 

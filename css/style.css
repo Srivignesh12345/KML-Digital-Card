@@ -519,3 +519,77 @@ html {
   line-height: 1.7;
   margin-bottom: 10px;
 }
+
+/* NAV BASE */
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+/* LINKS */
+.nav-links {
+  display: flex;
+  gap: 24px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+/* MOBILE TOGGLE BUTTON (CUSTOM) */
+.nav-toggle {
+  display: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--green);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+}
+
+.nav-toggle span {
+  width: 18px;
+  height: 2px;
+  background: #fff;
+  margin: 3px 0;
+  transition: 0.3s;
+}
+
+/* MOBILE VIEW */
+@media (max-width: 768px) {
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 260px;
+    height: 100vh;
+    background: #fff;
+    flex-direction: column;
+    padding: 90px 24px;
+    gap: 20px;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.2);
+    transition: right 0.35s ease;
+    z-index: 9998;
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+
+  .nav-links a {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .nav-toggle {
+    display: flex;
+    margin-left: 12px;
+  }
+}
