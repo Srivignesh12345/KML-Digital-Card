@@ -8,24 +8,30 @@
 
 
 body {
-  font-family: "KalpanaHeaderFont","Segoe UI", Arial, sans-serif;
+  font-family: "Segoe UI", Arial, sans-serif;
   background: var(--light-bg);
   color: #333;
 }
 
 
+
 /* HEADER CUSTOM FONT ONLY */
 .lab-name {
-  font-size: 32px;          /* BIGGER */
+  font-family: "KalpanaHeaderFont", cursive;
+  font-size: 36px;
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.05;
 }
 
 .lab-tagline {
-  font-size: 17px;          /* BIGGER */
-  letter-spacing: 1px;
-  margin-top: 2px;
+  font-family: "KalpanaHeaderFont", cursive;
+  font-size: 18px;
+  letter-spacing: 1.2px;
+  margin-top: 4px;
 }
+
+
+
 
 
 
@@ -39,8 +45,8 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Segoe UI", sans-serif;
 }
+
 
 body {
   background: var(--light-bg);
@@ -49,18 +55,61 @@ body {
 
 /* HEADER */
 .header {
-  background: #fff;
-  padding: 15px 30px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+
+  padding: 18px 40px;
+
+  /* Premium glass background */
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+  position: sticky;
+  top: 0;
+  z-index: 999;
 }
+
+
+/* LOGO TEXT – CUSTOM FONT ONLY */
+.header .lab-name,
+.header .lab-tagline {
+  font-family: "KalpanaHeaderFont", "Segoe UI", Arial, sans-serif;
+}
+
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.header .lab-name {
+  font-size: 32px;     /* BIG */
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.header .lab-tagline {
+  font-size: 17px;     /* Bigger */
+  letter-spacing: 1px;
+  margin-top: 2px;
+}
+
 .logo {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 18px;
 }
+
+
+
 
 .logo img {
   height: 48px;
@@ -72,25 +121,25 @@ body {
 .logo-text {
   display: flex;
   flex-direction: column;
-  line-height: 1.2;
+  justify-content: center;
+  align-items: flex-start;
+
+  transform: translateY(4px);   /* 🔥 OPTICAL CENTERING */
 }
 
-.lab-name {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--green);
-}
 
-.lab-tagline {
-  font-size: 12px;
-  color: #666;
-}
+
+
+
 
 .logo img {
-  height: 45px;        /* Adjust if needed */
+  height: 68px;          /* ⬅ increased from 45px */
   width: auto;
   display: block;
+  filter: drop-shadow(0 3px 6px rgba(0,0,0,0.25));
 }
+
+
 
 /* Optional: align logo better with nav */
 .header {
@@ -459,7 +508,9 @@ html {
   line-height: 1.7;
   color: #555;
   margin-bottom: 10px;
+  text-align: justify;   /* ✅ ADD THIS */
 }
+
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
@@ -642,3 +693,32 @@ html {
 .contact-address strong {
   color: var(--green);
 }
+@media (max-width: 768px) {
+  .header {
+    grid-template-columns: auto 1fr auto;
+  }
+
+  .logo-text {
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+
+/* CENTER STAT TEXT */
+.stat-center {
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--green);
+  margin: 15px 0;
+}
+
+/* MAKE 50000+ LOOK LIKE MAIN COUNTERS */
+.big-counter {
+  font-size: 38px;
+  font-weight: 700;
+  margin: 0 6px;
+  display: inline-block;
+}
+

@@ -1,28 +1,27 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const counters = document.querySelectorAll(".counter");
+const counters = document.querySelectorAll(".counter");
 
-  counters.forEach(counter => {
-    const target = +counter.dataset.target;
-    const duration = 5000; // 5 seconds
-    const startTime = performance.now();
+counters.forEach(counter => {
+  const target = Number(counter.dataset.target);
+  const suffix = counter.dataset.suffix || "";
+  const duration = 5000;
+  let start = 0;
 
-    function update(currentTime) {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const value = Math.floor(progress * target);
+  const step = Math.ceil(target / (duration / 16));
 
-      counter.innerText = value.toLocaleString();
-
-      if (progress < 1) {
-        requestAnimationFrame(update);
-      } else {
-        counter.innerText = target.toLocaleString();
-      }
+  const update = () => {
+    start += step;
+    if (start >= target) {
+      counter.innerText = target.toLocaleString() + suffix;
+    } else {
+      counter.innerText = start.toLocaleString();
+      requestAnimationFrame(update);
     }
+  };
 
-    requestAnimationFrame(update);
-  });
+  update();
 });
+
+
 
 
 /* LIGHTBOX */
