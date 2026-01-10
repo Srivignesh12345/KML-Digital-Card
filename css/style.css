@@ -1,3 +1,34 @@
+@font-face {
+  font-family: "KalpanaHeaderFont";
+  src: url("../fonts/EXPSH___.TTF") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+body {
+  font-family: "KalpanaHeaderFont","Segoe UI", Arial, sans-serif;
+  background: var(--light-bg);
+  color: #333;
+}
+
+
+/* HEADER CUSTOM FONT ONLY */
+.lab-name {
+  font-size: 32px;          /* BIGGER */
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.lab-tagline {
+  font-size: 17px;          /* BIGGER */
+  letter-spacing: 1px;
+  margin-top: 2px;
+}
+
+
+
 :root {
   --green: #1fa971;
   --dark-green: #168a5c;
