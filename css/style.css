@@ -8,27 +8,49 @@
 
 
 body {
+  background: var(--light-green);
+  color: var(--dark-green);
+  margin: 0;
   font-family: "Segoe UI", Arial, sans-serif;
-  background: var(--light-bg);
-  color: #333;
 }
-
 
 
 /* HEADER CUSTOM FONT ONLY */
 .lab-name {
   font-family: "KalpanaHeaderFont", cursive;
-  font-size: 36px;
-  font-weight: 700;
+  font-size: 48px;
+  font-weight: 800;
   line-height: 1.05;
+
+  /* TEXT COLORS */
+  color: #7CFF00; /* dark green inner text */
+
+  /* ELECTRIC LIME OUTLINE */
+  text-shadow:
+    -1px -1px 0 #1f7d4d,
+     1px -1px 0 #1f7d4d,
+    -1px  1px 0 #1f7d4d,
+     1px  1px 0 #1f7d4d,
+     0px  2px 3px rgba(0,0,0,0.15); /* soft depth */
+
+  letter-spacing: 0.6px;
 }
 
+
 .lab-tagline {
-  font-family: "KalpanaHeaderFont", cursive;
-  font-size: 18px;
-  letter-spacing: 1.2px;
-  margin-top: 4px;
+  font-family: "Segoe UI", Arial, sans-serif;  /* regular, official */
+  font-size: 15.5px;
+  font-weight: 600;
+
+  letter-spacing: 0.4px;
+  margin-top: 20px;     
+         /* better separation */
+  color: var(--green);
+   align-self: flex-start;             /* calm medical green */
 }
+
+
+
 
 
 
@@ -36,10 +58,17 @@ body {
 
 
 :root {
-  --green: #1fa971;
-  --dark-green: #168a5c;
-  --light-bg: #f3faf7;
+  /* Card-inspired greens */
+  --green: #228C22;        /* primary text & numbers */
+  --dark-green: #17432c;   /* headings & accents */
+  --light-green: #eaf6ef;  /* page background */
+  --mint-green: #cfe9dc;   /* soft separators */
+
+  /* Neutrals */
+  --white: #ffffff;
+  --text-dark: #2d2d2d;
 }
+
 
 * {
   margin: 0;
@@ -48,10 +77,6 @@ body {
 }
 
 
-body {
-  background: var(--light-bg);
-  color: #333;
-}
 
 /* HEADER */
 .header {
@@ -59,16 +84,23 @@ body {
   align-items: center;
   justify-content: space-between;
 
-  padding: 18px 40px;
+  padding: 20px 42px;
 
-  /* Premium glass background */
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(14px);
+  /* Light green glass theme (from visiting card) */
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.9),
+    rgba(234, 246, 239, 0.85)
+  );
+
   -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
 
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(46, 159, 99, 0.15);
 
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.08),
+    inset 0 -1px 0 rgba(46, 159, 99, 0.08);
 
   position: sticky;
   top: 0;
@@ -76,31 +108,19 @@ body {
 }
 
 
+
 /* LOGO TEXT – CUSTOM FONT ONLY */
-.header .lab-name,
-.header .lab-tagline {
-  font-family: "KalpanaHeaderFont", "Segoe UI", Arial, sans-serif;
-}
-
-
-.logo-text {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-
 .header .lab-name {
-  font-size: 32px;     /* BIG */
-  font-weight: 700;
-  line-height: 1.2;
+  font-family: "KalpanaHeaderFont", cursive;
+}   
+.header .lab-tagline {
+  font-family: "Segoe UI", Arial, sans-serif;
 }
 
-.header .lab-tagline {
-  font-size: 17px;     /* Bigger */
-  letter-spacing: 1px;
-  margin-top: 2px;
-}
+
+
+
+
 
 .logo {
   display: flex;
@@ -109,22 +129,15 @@ body {
 }
 
 
-
-
-.logo img {
-  height: 48px;
-  outline: 8px;
-  width: auto;  
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.25));
-}
-
 .logo-text {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
 
-  transform: translateY(4px);   /* 🔥 OPTICAL CENTERING */
+  align-items: flex-start;     /* 🔑 hard left alignment */
+  text-align: left;
+
+  padding-left: 2px;           /* 🔑 micro correction for script font */
 }
 
 
@@ -133,10 +146,15 @@ body {
 
 
 .logo img {
-  height: 68px;          /* ⬅ increased from 45px */
+  height: 68px;
   width: auto;
   display: block;
-  filter: drop-shadow(0 3px 6px rgba(0,0,0,0.25));
+
+  border-radius: 8px;        /* ⭐ subtle rounding */
+  background: #fff;          /* clean edge */
+  padding: 4px;              /* breathing space */
+
+  box-shadow: 0 3px 6px rgba(0,0,0,0.25);
 }
 
 
@@ -148,14 +166,30 @@ body {
 
 
 nav a {
-  margin-left: 20px;
+  position: relative;
+  margin-left: 22px;
+  padding: 8px 14px;
+
   text-decoration: none;
-  color: #555;
+  color: --dark-green;
+  font-weight: 500;
+
+  border-radius: 20px;
+  background: transparent;
+
+  transition:
+    color 0.3s ease,
+    background-color 0.3s ease,
+    transform 0.2s ease;
 }
 
+
 nav a:hover {
-  color: var(--green);
+  background-color: rgba(46, 159, 99, 0.12); /* light green */
+  color: var(--dark-green);
+  transform: translateY(-1px);
 }
+
 
 /* MAIN */
 main {
@@ -245,7 +279,7 @@ main {
 
 .btn-green {
   background: var(--green);
-  color: #fff;
+  color: #ffffff;
   border: 2px solid transparent; /* ✅ IMPORTANT */
 }
 
@@ -580,6 +614,18 @@ html {
     max-width: 100%;
   }
 }
+
+.whatsapp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  justify-self: center;
+}
+
+.whatsapp-btn i {
+  font-size: 18px;
+}
+
 .footer-link {
   font-size: 13px;
   color: #777;
@@ -697,12 +743,8 @@ html {
   .header {
     grid-template-columns: auto 1fr auto;
   }
-
-  .logo-text {
-    align-items: flex-start;
-    text-align: left;
-  }
 }
+
 
 /* CENTER STAT TEXT */
 .stat-center {
