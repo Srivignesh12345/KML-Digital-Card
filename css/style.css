@@ -918,3 +918,10 @@ html, body {
     font-size: 14px;
   }
 }
+
+@media (max-width: 768px) {
+  .lab-name {
+    font-size: 30px;
+    text-indent: 0.5em;  /* 🔥 slightly stronger for mobile */
+  }
+}
