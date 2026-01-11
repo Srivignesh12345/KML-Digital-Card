@@ -1,106 +1,32 @@
-const counters = document.querySelectorAll(".counter");
-
-counters.forEach(counter => {
-  const target = Number(counter.dataset.target);
-  const suffix = counter.dataset.suffix || "";
-  const duration = 5000;
-  let start = 0;
-
-  const step = Math.ceil(target / (duration / 16));
-
-  const update = () => {
-    start += step;
-    if (start >= target) {
-      counter.innerText = target.toLocaleString() + suffix;
-    } else {
-      counter.innerText = start.toLocaleString();
-      requestAnimationFrame(update);
-    }
-  };
-
-  update();
-});
-
-
-
-
-/* LIGHTBOX */
-function openLightbox(src) {
-  const lightbox = document.getElementById("lightbox");
-  const img = document.getElementById("lightbox-img");
-
-  img.src = src;
-  lightbox.style.display = "flex";
-}
-
-function closeLightbox() {
-  document.getElementById("lightbox").style.display = "none";
-}
-
-function showPage(pageId) {
-  const pages = document.querySelectorAll(".page");
-
-  pages.forEach(page => {
-    page.classList.remove("active");
-  });
-
-  const target = document.getElementById(pageId);
-  if (target) {
-    setTimeout(() => {
-      target.classList.add("active");
-    }, 50);
-  }
-}
 document.addEventListener("DOMContentLoaded", () => {
 
   /* ===============================
-     SECTION REVEAL (SCROLL + CLICK)
+     NAV TOGGLE (MOBILE)
   ================================ */
+  const navToggle = document.getElementById("navToggle");
+  const navLinks = document.getElementById("navLinks");
 
-  const sections = document.querySelectorAll(".reveal");
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("active");
-        }
-      });
-    },
-    { threshold: 0.15 }
-  );
-
-  sections.forEach(section => observer.observe(section));
-
-  /* ===============================
-     NAV CLICK TRIGGER
-  ================================ */
-
-  const navLinks = document.querySelectorAll("nav a");
-
-  navLinks.forEach(link => {
-    link.addEventListener("click", () => {
-      const targetId = link.getAttribute("href").replace("#", "");
-      const targetSection = document.getElementById(targetId);
-
-      if (targetSection) {
-        targetSection.classList.remove("active");
-
-        setTimeout(() => {
-          targetSection.classList.add("active");
-        }, 150);
-      }
+  if (navToggle && navLinks) {
+    navToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
     });
-  });
+
+    // Close menu when link clicked
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("active");
+      });
+    });
+  }
 
   /* ===============================
-     COUNTER (KEEP YOUR EXISTING CODE)
+     COUNTER ANIMATION (+ SUPPORT)
   ================================ */
-
   const counters = document.querySelectorAll(".counter");
 
   counters.forEach(counter => {
-    const target = +counter.dataset.target;
+    const target = Number(counter.dataset.target);
+    const suffix = counter.dataset.suffix || "";
     const duration = 5000;
     const startTime = performance.now();
 
@@ -108,31 +34,47 @@ document.addEventListener("DOMContentLoaded", () => {
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
       const value = Math.floor(progress * target);
-      counter.innerText = value.toLocaleString();
+      counter.innerText = value.toLocaleString() + suffix;
 
-      if (progress < 1) requestAnimationFrame(update);
+      if (progress < 1) {
+        requestAnimationFrame(update);
+      }
     }
 
     requestAnimationFrame(update);
   });
 
+  /* ===============================
+     SECTION REVEAL ON SCROLL
+  ================================ */
+  const reveals = document.querySelectorAll(".reveal");
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("active");
+      }
+    });
+  }, { threshold: 0.15 });
+
+  reveals.forEach(el => observer.observe(el));
 });
 
-/* LIGHTBOX (UNCHANGED) */
+
+/* ===============================
+   LIGHTBOX
+================================ */
 function openLightbox(src) {
   const lightbox = document.getElementById("lightbox");
   const img = document.getElementById("lightbox-img");
-  img.src = src;
-  lightbox.style.display = "flex";
+
+  if (lightbox && img) {
+    img.src = src;
+    lightbox.style.display = "flex";
+  }
 }
 
 function closeLightbox() {
-  document.getElementById("lightbox").style.display = "none";
-}
-function toggleMenu() {
-  document.getElementById("navLinks").classList.toggle("active");
-}
-
-function closeMenu() {
-  document.getElementById("navLinks").classList.remove("active");
+  const lightbox = document.getElementById("lightbox");
+  if (lightbox) lightbox.style.display = "none";
 }
