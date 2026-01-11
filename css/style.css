@@ -21,32 +21,35 @@ body {
   font-size: 48px;
   font-weight: 800;
   line-height: 1.05;
+  margin-left: 40px;   /* 🔑 aligns with first letter */
 
-  /* TEXT COLORS */
-  color: #7CFF00; /* dark green inner text */
+  margin: 0;           /* 🔑 remove default spacing */
 
-  /* ELECTRIC LIME OUTLINE */
+  color: #ff00ff;
   text-shadow:
-    -1px -1px 0 #1f7d4d,
-     1px -1px 0 #1f7d4d,
-    -1px  1px 0 #1f7d4d,
-     1px  1px 0 #1f7d4d,
-     0px  2px 3px rgba(0,0,0,0.15); /* soft depth */
+    -1px -1px 0 #ccff00,
+     1px -1px 0 #ccff00,
+    -1px  1px 0 #ccff00,
+     1px  1px 0 #ccff00,
+     0px  2px 3px rgba(0,0,0,0.15);
+}
 
-  letter-spacing: 0.6px;
+.first-letter {
+  display: inline-block;
+  width: 40px;        /* aligns tagline with “a” */
 }
 
 
 .lab-tagline {
-  font-family: "Segoe UI", Arial, sans-serif;  /* regular, official */
+  font-family: "Segoe UI", Arial, sans-serif;
   font-size: 15.5px;
   font-weight: 600;
 
+  margin: 0;           /* 🔑 VERY IMPORTANT */
+  padding-left: 32px;  /* aligns under 'a' of Kalpana */
+
   letter-spacing: 0.4px;
-  margin-top: 20px;     
-         /* better separation */
   color: var(--green);
-   align-self: flex-start;             /* calm medical green */
 }
 
 
@@ -125,8 +128,9 @@ body {
 .logo {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 20px;           /* clean breathing space */
 }
+
 
 
 .logo-text {
@@ -800,13 +804,20 @@ html {
     font-size: 30px;
     line-height: 1.15;
   }
+/* Anchor for the K */
+/* Anchor for the K */
+@media (max-width: 768px) {
+  .logo-text {
+    align-items: center;
+    text-align: center;
+    padding-left: 0;
+  }
 
   .lab-tagline {
-    font-size: 14px;
-    line-height: 1.4;
-    margin-top: 4px;
-    max-width: 95%;
+    margin-left: 0;   /* 🔑 IMPORTANT */
   }
+}
+
 
   /* NAVIGATION */
   .nav {
@@ -885,4 +896,25 @@ html {
 }
 html, body {
   overflow-x: hidden;
+}
+@media (max-width: 768px) {
+  .logo {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .logo-text {
+    align-items: center;
+    text-align: center;
+    gap: 4px;
+  }
+
+  .lab-name {
+    font-size: 30px;
+  }
+
+  .lab-tagline {
+    padding-left: 0;
+    font-size: 14px;
+  }
 }
