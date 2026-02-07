@@ -10,7 +10,7 @@ Trusted · Accurate · Ethical Diagnostic Services
 ---
 
 🌐 **Live Website**  
-👉 <https://kalpana-microbiology-lab.netlify.app> *(replace with final URL)*
+👉 <https://kalpanamicrolab.vercel.app> *(replace with final URL)*
 
 </div>
 
