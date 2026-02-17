@@ -1,80 +1,120 @@
+/* ============================
+   FIX HOME / ANCHOR SCROLL
+============================ */
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener("click", function (e) {
+    const targetId = this.getAttribute("href");
+    const target = document.querySelector(targetId);
+
+    if (!target) return;
+
+    e.preventDefault();
+
+    const headerOffset = document.querySelector(".header")?.offsetHeight || 0;
+    const elementPosition = target.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth"
+    });
+  });
+});
+
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* ===============================
-     NAV TOGGLE (MOBILE)
-  ================================ */
+  /* ============================
+     MOBILE NAV TOGGLE
+  ============================ */
   const navToggle = document.getElementById("navToggle");
   const navLinks = document.getElementById("navLinks");
 
   if (navToggle && navLinks) {
-    navToggle.addEventListener("click", () => {
+    navToggle.addEventListener("click", (e) => {
+      e.stopPropagation();
       navLinks.classList.toggle("active");
     });
 
-    // Close menu when link clicked
-    navLinks.querySelectorAll("a").forEach(link => {
-      link.addEventListener("click", () => {
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest(".nav")) {
         navLinks.classList.remove("active");
-      });
+      }
     });
   }
 
-  /* ===============================
-     COUNTER ANIMATION (+ SUPPORT)
-  ================================ */
-  const counters = document.querySelectorAll(".counter");
+    /* ============================
+      SERVICES ACCORDION
+    ============================ */
+    const services = document.querySelectorAll(".service-acc");
 
-  counters.forEach(counter => {
-    const target = Number(counter.dataset.target);
-    const suffix = counter.dataset.suffix || "";
-    const duration = 5000;
-    const startTime = performance.now();
+    services.forEach(service => {
+      const btn = service.querySelector(".service-btn");
+      if (!btn) return;
 
-    function update(currentTime) {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const value = Math.floor(progress * target);
-      counter.innerText = value.toLocaleString() + suffix;
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
 
-      if (progress < 1) {
-        requestAnimationFrame(update);
-      }
-    }
+        const isOpen = service.classList.contains("active");
 
-    requestAnimationFrame(update);
-  });
+        services.forEach(s => s.classList.remove("active"));
 
-  /* ===============================
-     SECTION REVEAL ON SCROLL
-  ================================ */
-  const reveals = document.querySelectorAll(".reveal");
+        if (!isOpen) {
+          service.classList.add("active");
+        }
+      });
+    });
 
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("active");
+  /* ============================
+     GALLERY LIGHTBOX
+  ============================ */
+  window.openLightbox = function (src) {
+    const lightbox = document.getElementById("lightbox");
+    const img = document.getElementById("lightbox-img");
+
+    if (!lightbox || !img) return;
+
+    img.src = src;
+    lightbox.style.display = "flex";
+  };
+
+  window.closeLightbox = function () {
+    const lightbox = document.getElementById("lightbox");
+    if (!lightbox) return;
+
+    lightbox.style.display = "none";
+  };
+
+  /* ============================
+     REVEAL ON SCROLL
+  ============================ */
+  const revealItems = document.querySelectorAll(".reveal");
+
+  const revealOnScroll = () => {
+    const windowHeight = window.innerHeight;
+
+    revealItems.forEach(item => {
+      const rect = item.getBoundingClientRect();
+
+      if (rect.top < windowHeight - 100) {
+        item.classList.add("active");
       }
     });
-  }, { threshold: 0.15 });
+  };
 
-  reveals.forEach(el => observer.observe(el));
+  window.addEventListener("scroll", revealOnScroll);
+  revealOnScroll(); // run once on load
+
 });
 
 
-/* ===============================
-   LIGHTBOX
-================================ */
-function openLightbox(src) {
-  const lightbox = document.getElementById("lightbox");
-  const img = document.getElementById("lightbox-img");
+/* ============================
+   FORCE SERVICE IMAGE SHAPE
+============================ */
+document.querySelectorAll(".service-img").forEach(img => {
+  img.style.width = "100%";
+  img.style.height = "220px";
+  img.style.objectFit = "cover";
+  img.style.borderRadius = "14px";
+  img.style.display = "block";
+});
 
-  if (lightbox && img) {
-    img.src = src;
-    lightbox.style.display = "flex";
-  }
-}
-
-function closeLightbox() {
-  const lightbox = document.getElementById("lightbox");
-  if (lightbox) lightbox.style.display = "none";
-}

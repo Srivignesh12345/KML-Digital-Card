@@ -1,9 +1,27 @@
+:root {
+  /* Card-inspired greens */
+  --green: #228C22;        /* primary text & numbers */
+  --dark-green: #17432c;   /* headings & accents */
+  --light-green: #eaf6ef;  /* page background */
+  --mint-green: #cfe9dc;   /* soft separators */
+
+  /* Neutrals */
+  --white: #ffffff;
+  --text-dark: #2d2d2d;
+}
+
 @font-face {
   font-family: "KalpanaHeaderFont";
   src: url("../fonts/EXPSH___.TTF") format("truetype");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 
@@ -13,7 +31,6 @@ body {
   margin: 0;
   font-family: "Segoe UI", Arial, sans-serif;
 }
-
 
 /* HEADER CUSTOM FONT ONLY */
 .lab-name {
@@ -175,7 +192,7 @@ nav a {
   padding: 8px 14px;
 
   text-decoration: none;
-  color: --dark-green;
+  color: var(--dark-green);
   font-weight: 500;
 
   border-radius: 20px;
@@ -485,7 +502,7 @@ html {
 /* CEO IMAGE */
 .ceo-image img {
   width: 100%;
-  border-radius: 18px;
+  border-radius: 10px;
   box-shadow: 0 12px 28px rgba(0,0,0,0.25);
 }
 
@@ -557,7 +574,7 @@ html {
   }
 
   .ceo-image img {
-    max-width: 280px;
+    max-width: 180px;
     margin: auto;
     display: block;
   }
@@ -924,4 +941,1351 @@ html, body {
     font-size: 30px;
     text-indent: 0.5em;  /* 🔥 slightly stronger for mobile */
   }
+}
+
+/* SERVICE TOGGLE CARD */
+.service-toggle-card {
+  background: #fff;
+  border-radius: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  overflow: hidden;
+}
+
+/* CLICKABLE TITLE */
+.service-toggle-header {
+  padding: 16px 20px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-dark);
+  cursor: pointer;
+
+  border-left: 4px solid var(--green);
+  background: #f9fdfb;
+}
+
+/* HIDDEN CONTENT */
+.service-toggle-content {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 20px;
+  transition: max-height 0.45s ease, padding 0.35s ease;
+}
+
+/* IMAGE */
+.service-toggle-content img {
+  width: 100%;
+  max-height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin: 16px 0;
+}
+
+/* BASIC TESTS */
+.service-toggle-content h3 {
+  font-size: 16px;
+  color: var(--green);
+  margin-bottom: 8px;
+}
+
+.service-toggle-content ul {
+  padding-left: 18px;
+  margin-bottom: 18px;
+}
+
+.service-toggle-content li {
+  font-size: 14.5px;
+  color: #555;
+  margin-bottom: 6px;
+}
+
+/* ACTIVE STATE */
+.service-toggle-card.active .service-toggle-content {
+  max-height: 500px;
+  padding: 0 20px 18px;
+}
+/* PREVIEW OVERLAY */
+.service-preview {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+/* CARD */
+.preview-card {
+  background: #fff;
+  border-radius: 22px;
+  max-width: 420px;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+
+  box-shadow: 0 25px 60px rgba(0,0,0,0.35);
+  animation: scaleIn 0.35s ease;
+}
+
+/* IMAGE */
+.preview-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-bottom: 14px;
+}
+
+/* TEXT */
+.preview-card h3 {
+  font-size: 20px;
+  color: var(--green);
+  margin-bottom: 6px;
+}
+
+.preview-card h4 {
+  font-size: 15px;
+  color: #777;
+  margin-bottom: 8px;
+}
+
+.preview-card ul {
+  padding-left: 18px;
+  text-align: left;
+}
+
+.preview-card li {
+  font-size: 14.5px;
+  color: #555;
+  margin-bottom: 6px;
+}
+
+/* ANIMATION */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+/* SERVICE HOVER CARD */
+.service-hover-card {
+  position: relative;
+  height: 110px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+/* FRONT */
+.service-front {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 600;
+  color: var(--dark-green);
+  transition: opacity 0.3s ease;
+}
+
+/* BACK (HIDDEN CONTENT) */
+.service-back {
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  padding: 12px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  transform: scale(0.95);
+  transition: all 0.35s ease;
+}
+
+/* IMAGE */
+.service-back img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 6px;
+}
+
+/* TEXT */
+.service-back h3 {
+  font-size: 14px;
+  color: var(--green);
+  margin-bottom: 4px;
+}
+
+.service-back ul {
+  padding-left: 14px;
+  font-size: 12.5px;
+  color: #555;
+}
+
+/* HOVER / ACTIVE */
+.service-hover-card:hover .service-back,
+.service-hover-card.active .service-back {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.service-hover-card:hover .service-front,
+.service-hover-card.active .service-front {
+  opacity: 0;
+}
+
+/* MOBILE FRIENDLY */
+@media (max-width: 768px) {
+  .service-hover-card {
+    height: auto;
+    min-height: 120px;
+  }
+}
+/* 4x4 SERVICES GRID */
+.services-4x4-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-top: 25px;
+}
+
+/* SERVICE BOX */
+.service-grid-item {
+  position: relative;
+  height: 120px;
+  border-radius: 14px;
+  background: #fff;
+  cursor: pointer;
+  overflow: hidden;
+
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+/* TITLE (DEFAULT VIEW) */
+.service-title {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--dark-green);
+  text-align: center;
+  padding: 10px;
+
+  border-left: 4px solid var(--green);
+  transition: opacity 0.3s ease;
+}
+
+/* HOVER CONTENT (HIDDEN) */
+.service-hover-content {
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  padding: 14px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  transform: scale(0.95);
+  transition: all 0.35s ease;
+  text-align: center;
+}
+
+/* CONTENT TEXT */
+.service-hover-content h3 {
+  font-size: 14px;
+  color: var(--green);
+  margin-bottom: 6px;
+}
+
+.service-hover-content ul {
+  padding-left: 16px;
+  font-size: 13px;
+  color: #555;
+  text-align: left;
+}
+
+/* HOVER EFFECT */
+.service-grid-item:hover .service-hover-content,
+.service-grid-item.active .service-hover-content {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.service-grid-item:hover .service-title,
+.service-grid-item.active .service-title {
+  opacity: 0;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+  .services-4x4-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .services-4x4-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-grid-item {
+    height: auto;
+    min-height: 140px;
+  }
+}
+
+/* HORIZONTAL HOVER CONTENT */
+.horizontal-layout {
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+}
+
+/* IMAGE */
+.horizontal-layout .service-image img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* TEXT */
+.horizontal-layout .service-text h3 {
+  font-size: 15px;
+  color: var(--green);
+  margin-bottom: 6px;
+}
+
+.horizontal-layout .service-text ul {
+  padding-left: 16px;
+  font-size: 13px;
+  color: #555;
+}
+
+/* MOBILE STACK */
+@media (max-width: 576px) {
+  .horizontal-layout {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .horizontal-layout .service-text ul {
+    text-align: left;
+  }
+}
+
+
+/* SERVICE GRID ITEM */
+.service-grid-item {
+  position: relative;
+  height: 140px;                 /* 🔑 REQUIRED */
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+/* TITLE */
+.service-title {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: var(--dark-green);
+  z-index: 1;
+  background: #fff;
+  border-left: 4px solid var(--green);
+  transition: opacity 0.25s ease;
+}
+
+/* HOVER CONTENT */
+.service-hover-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px;
+
+  background: #fff;
+  opacity: 0;
+  z-index: 2;                   /* 🔑 FIX */
+  pointer-events: none;         /* 🔑 FIX */
+  transition: opacity 0.3s ease;
+}
+
+/* IMAGE */
+.service-hover-content img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* TEXT */
+.service-hover-content h3 {
+  font-size: 14px;
+  color: var(--green);
+  margin-bottom: 6px;
+}
+
+.service-hover-content ul {
+  padding-left: 16px;
+  font-size: 13px;
+  color: #555;
+}
+
+/* SHOW ON HOVER */
+.service-grid-item:hover .service-hover-content,
+.service-grid-item.active .service-hover-content {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.service-grid-item:hover .service-title,
+.service-grid-item.active .service-title {
+  opacity: 0;
+}
+
+/* MOBILE SAFETY */
+@media (max-width: 768px) {
+  .service-grid-item {
+    height: auto;
+    min-height: 160px;
+  }
+}
+
+
+.service-detail-card {
+  margin-top: 30px;
+  background: #fff;
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+}
+
+.service-detail-card img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-bottom: 14px;
+}
+
+.service-detail-card h3 {
+  color: var(--green);
+  margin-bottom: 6px;
+}
+
+.service-detail-card ul {
+  padding-left: 18px;
+}
+/* SERVICE BUTTON */
+.service-item {
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.service-item:active {
+  transform: scale(0.98);
+}
+
+/* EMBEDDED DETAIL CARD */
+.service-embed-card {
+  display: none;
+  margin: 18px auto;
+  max-width: 320px;
+  padding: 16px;
+
+  background: #ffffff;
+  border-radius: 16px;
+
+  /* Embossed effect */
+  box-shadow:
+    inset 2px 2px 6px rgba(255,255,255,0.9),
+    inset -2px -2px 6px rgba(0,0,0,0.05),
+    0 8px 20px rgba(0,0,0,0.15);
+
+  text-align: left;
+}
+
+/* IMAGE */
+.service-embed-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+/* TEXT */
+.service-embed-card h3 {
+  color: var(--green);
+  margin-bottom: 6px;
+}
+
+.service-embed-card h4 {
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.service-embed-card ul {
+  padding-left: 18px;
+  font-size: 14px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .service-embed-card {
+    max-width: 100%;
+  }
+}
+/* ===============================
+   SERVICES ACCORDION (FINAL)
+================================ */
+
+.services-accordion {
+  max-width: 900px;
+  margin: 20px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.service-acc {
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  border-left: 4px solid var(--green);
+}
+
+/* BUTTON */
+.service-btn {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 16px 20px;
+  font-size: 17px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.service-btn i {
+  transition: transform 0.3s ease;
+}
+
+/* PANEL */
+.service-panel {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 20px;
+  transition: max-height 0.45s ease, padding 0.35s ease;
+}
+
+/* IMAGE */
+.service-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin: 14px 0;
+}
+
+/* TEXT */
+.service-panel h4 {
+  color: var(--green);
+  margin-bottom: 8px;
+}
+
+.service-panel ul {
+  padding-left: 18px;
+  margin-bottom: 18px;
+}
+
+.service-panel li {
+  font-size: 14.5px;
+  color: #555;
+  margin-bottom: 6px;
+}
+
+/* ACTIVE STATE */
+.service-acc.active .service-panel {
+  max-height: 600px;
+  padding: 0 20px 18px;
+}
+
+.service-acc.active .service-btn i {
+  transform: rotate(180deg);
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .service-img {
+    height: 160px;
+  }
+
+  .service-btn {
+    font-size: 16px;
+  }
+}
+/* ===============================
+   SERVICES ACCORDION – ENHANCED
+================================ */
+
+/* Smooth animation */
+.service-panel {
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition:
+    max-height 0.45s ease,
+    opacity 0.35s ease,
+    transform 0.35s ease;
+}
+
+.service-acc.active .service-panel {
+  max-height: 700px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Image fade-in */
+.service-img {
+  opacity: 0;
+  transform: scale(0.97);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.service-acc.active .service-img {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Two-column tests on desktop */
+.service-tests {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px 18px;
+}
+
+/* Test item with icon */
+.service-tests li {
+  list-style: none;
+  position: relative;
+  padding-left: 20px;
+  font-size: 14.5px;
+  color: #444;
+}
+
+.service-tests li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--green);
+  font-size: 13px;
+}
+
+/* Mobile fallback */
+@media (max-width: 768px) {
+  .service-tests {
+    grid-template-columns: 1fr;
+  }
+}
+/* SERVICES ACCORDION */
+.services-accordion {
+  max-width: 900px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.service-acc {
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  border-left: 4px solid var(--green);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+/* BUTTON */
+.service-btn {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 16px 20px;
+  font-size: 17px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.service-btn i {
+  transition: transform 0.3s ease;
+}
+
+/* PANEL */
+.service-panel {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 20px;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition:
+    max-height 0.45s ease,
+    opacity 0.35s ease,
+    transform 0.35s ease;
+}
+
+.service-acc.active .service-panel {
+  max-height: 700px;
+  padding: 0 20px 18px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* RESPONSIVE SERVICE IMAGE */
+.service-img {
+  width: 100%;
+  height: auto;                 /* important */
+  aspect-ratio: 16 / 9;         /* desktop-friendly */
+  object-fit: cover;
+  border-radius: 12px;
+  margin: 14px 0;
+  display: block;
+}
+
+/* TEXT */
+.service-panel h4 {
+  color: var(--green);
+  margin-bottom: 8px;
+}
+
+.service-tests {
+  padding-left: 18px;
+}
+
+.service-tests li {
+  font-size: 14.5px;
+  color: #555;
+  margin-bottom: 6px;
+}
+
+/* ICON ROTATE */
+.service-acc.active .service-btn i {
+  transform: rotate(180deg);
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .service-img {
+    height: 160px;
+  }
+}
+@media (max-width: 768px) {
+  .service-img {
+    aspect-ratio: 4 / 3;        /* better for mobile */
+    margin: 10px 0;
+  }
+}
+@media (max-width: 480px) {
+  .service-img {
+    aspect-ratio: 1 / 1;        /* square = clean */
+    border-radius: 10px;
+  }
+}
+/* ===============================
+   FORCE SERVICE PANEL TO WORK
+   (DEBUG + FINAL FIX)
+================================ */
+/* =====================================================
+   SERVICES ACCORDION – FINAL CLEAN VERSION
+===================================================== */
+
+.services-accordion {
+  max-width: 900px;
+  margin: 20px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.service-acc {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  border-left: 4px solid var(--green);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+/* BUTTON */
+.service-btn {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 18px 22px;
+  font-size: 17px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.service-btn i {
+  transition: transform 0.3s ease;
+}
+
+/* PANEL */
+.service-panel {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 22px;
+  opacity: 0;
+  transform: translateY(-6px);
+
+  transition:
+    max-height 0.45s ease,
+    opacity 0.35s ease,
+    transform 0.35s ease;
+}
+
+/* ACTIVE STATE */
+.service-acc.active .service-panel {
+  max-height: 1200px;
+  padding: 0 22px 22px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.service-acc.active .service-btn i {
+  transform: rotate(180deg);
+}
+
+/* IMAGE – RESPONSIVE */
+.service-img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 14px;
+  margin: 14px 0;
+  display: block;
+}
+
+/* TEXT */
+.service-panel h4 {
+  color: var(--green);
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* TEST LIST */
+.service-tests {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px 18px;
+  padding-left: 0;
+  margin: 0;
+}
+
+.service-tests li {
+  list-style: none;
+  position: relative;
+  padding-left: 20px;
+  font-size: 14.5px;
+  color: #444;
+}
+
+.service-tests li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--green);
+  font-size: 13px;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .service-tests {
+    grid-template-columns: 1fr;
+  }
+
+  .service-img {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+@media (max-width: 480px) {
+  .service-img {
+    aspect-ratio: 1 / 1;
+    border-radius: 10px;
+  }
+}
+
+/* =====================================
+   SERVICE IMAGE CONSISTENCY FIX
+   (SAFE OVERRIDE – DO NOT REMOVE)
+===================================== */
+
+.service-img {
+  width: 100%;
+  height: 220px;          /* consistent height */
+  object-fit: cover;     /* no distortion */
+  border-radius: 14px;
+  display: block;
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+  .service-img {
+    height: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .service-img {
+    height: 160px;
+  }
+}
+  /* =====================================
+   FIX SERVICE IMAGE CROPPING (FINAL)
+===================================== */
+
+/* Keep accordion animation intact */
+.service-panel {
+  overflow: hidden;
+}
+
+/* Allow images to fully render */
+.service-panel .service-img {
+  display: block;
+  width: 100%;
+  height: auto;              /* 🔥 natural height */
+  max-height: none;          /* 🔥 remove clipping */
+  object-fit: contain;       /* full visibility */
+  background: #f5f7f6;
+  padding: 12px;
+  border-radius: 14px;
+}
+
+.service-panel .service-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  background: #f5f7f6;
+  padding: 12px;
+  border-radius: 14px;
+}
+
+/* =====================================
+   FINAL SERVICE IMAGE FIX – FULL IMAGE
+===================================== */
+
+/* Let panel expand naturally */
+.service-panel {
+  overflow: visible;
+}
+
+/* Image must control its own size */
+.service-panel .service-img {
+  width: 100%;
+  height: auto !important;     /* 🔥 key */
+  max-height: none !important; /* 🔥 key */
+  aspect-ratio: auto !important; /* 🔥 key */
+  object-fit: contain;
+  display: block;
+  background: #f5f7f6;
+  padding: 12px;
+  border-radius: 14px;
+}
+/* =====================================
+   INCREASE CONTENT BORDER SPACE
+===================================== */
+
+.card {
+  padding: 32px;            /* ⬅️ more inner space */
+  border-radius: 22px;      /* ⬅️ softer, larger border */
+}
+
+/* Mobile refinement */
+@media (max-width: 768px) {
+  .card {
+    padding: 28px;
+    border-radius: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 26px;
+    border-radius: 26px;
+  }
+}
+/* =====================================
+   PROFESSIONAL LAB GALLERY CARD
+===================================== */
+
+.gallery.card {
+  padding: 34px;
+  border-radius: 24px;
+}
+/* =====================================
+   LABORATORY GALLERY GRID – CLEAN
+===================================== */
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 22px;                 /* more spacing */
+  margin-top: 20px;
+}
+/* =====================================
+   GALLERY IMAGE – PROFESSIONAL LOOK
+===================================== */
+
+.gallery-item {
+  background: #ffffff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover – subtle & premium */
+.gallery-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.18);
+}
+
+/* Image */
+.gallery-item img {
+  width: 100%;
+  height: auto;              /* FULL image visible */
+  display: block;
+  object-fit: contain;       /* no cropping */
+  background: #f4f7f6;       /* medical neutral */
+  padding: 12px;
+}
+@media (max-width: 768px) {
+  .gallery.card {
+    padding: 28px;
+  }
+
+  .gallery-grid {
+    gap: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery.card {
+    padding: 24px;
+    border-radius: 26px;
+  }
+
+  .gallery-item {
+    border-radius: 20px;
+  }
+}
+/* =====================================
+   LABORATORY GALLERY – PROFESSIONAL FINAL
+===================================== */
+
+/* Gallery card – calm & premium */
+.gallery.card {
+  padding: 36px;
+  border-radius: 26px;
+}
+
+/* Grid – museum-like spacing */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 28px;
+  margin-top: 24px;
+}
+
+/* Gallery item – framed poster look */
+.gallery-item {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 14px;                 /* 🔑 frame effect */
+  box-shadow:
+    0 8px 22px rgba(0,0,0,0.12),
+    inset 0 0 0 1px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover – subtle professional lift */
+.gallery-item:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 14px 36px rgba(0,0,0,0.18),
+    inset 0 0 0 1px rgba(0,0,0,0.06);
+}
+
+/* Image – poster mounted on board */
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  background: #ffffff;
+  padding: 0;                    /* 🔑 remove extra padding */
+  border-radius: 14px;
+  border: 1px solid #e6e6e6;     /* 🔑 professional border */
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .gallery.card {
+    padding: 30px;
+  }
+
+  .gallery-grid {
+    gap: 22px;
+  }
+}
+
+/* Mobile – elegant & calm */
+@media (max-width: 480px) {
+  .gallery.card {
+    padding: 26px;
+    border-radius: 28px;
+  }
+
+  .gallery-item {
+    padding: 12px;
+    border-radius: 22px;
+  }
+
+  .gallery-item img {
+    border-radius: 12px;
+  }
+}
+/* =====================================
+   FIX GALLERY WIDTH ON MOBILE (FINAL)
+===================================== */
+
+@media (max-width: 600px) {
+
+  /* Let gallery breathe horizontally */
+  .gallery.card {
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 22px;          /* slightly reduced padding */
+    border-radius: 22px;
+  }
+
+  /* Make images visually larger */
+  .gallery-item {
+    padding: 10px;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+  }
+}
+  /* =====================================
+   LAB GALLERY – UNIFORM IMAGE BACKGROUND
+===================================== */
+
+/* Gallery item = fixed visual card */
+.gallery-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 260px;              /* SAME SIZE FOR ALL */
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 14px;
+
+  box-shadow:
+    0 8px 22px rgba(0,0,0,0.12),
+    inset 0 0 0 1px rgba(0,0,0,0.05);
+}
+
+/* Image stays inside without cropping */
+.gallery-item img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+
+  object-fit: contain;       /* FULL IMAGE */
+  display: block;
+}
+
+/* =========================
+   RESPONSIVE HEIGHT CONTROL
+========================= */
+
+/* Tablet */
+@media (max-width: 768px) {
+  .gallery-item {
+    height: 220px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .gallery-item {
+    height: 200px;
+    padding: 12px;
+    border-radius: 22px;
+  }
+}
+
+/* =====================================
+   SERVICE IMAGE – CLEAN SMALL SIZE
+===================================== */
+
+.service-panel {
+  text-align: center; /* center image */
+}
+
+.service-panel .service-img {
+  width: 70%;            /* smaller image */
+  max-width: 260px;      /* desktop cap */
+  height: auto;          /* natural height */
+  object-fit: contain;   /* no cropping */
+  display: block;
+  margin: 14px auto 18px auto; /* center */
+  border-radius: 14px;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .service-panel .service-img {
+    width: 75%;
+    max-width: 220px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .service-panel .service-img {
+    width: 80%;
+    max-width: 190px;
+  }
+}
+
+/* =====================================
+   LAB GALLERY – MOBILE BORDER FIX
+===================================== */
+
+/* Ensure image never escapes rounded card */
+.gallery-item {
+  overflow: hidden;        /* 🔥 ensures image stays inside border */
+  border-radius: 20px;
+}
+
+/* Make image perfectly contained */
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+
+  object-fit: contain;     /* full image visible */
+  padding: 8px;            /* 🔥 breathing space */
+  box-sizing: border-box;  /* respect padding */
+}
+
+/* Mobile fine-tuning */
+@media (max-width: 480px) {
+  .gallery-item {
+    border-radius: 22px;
+    padding: 10px;         /* inner white spacing */
+  }
+
+  .gallery-item img {
+    padding: 6px;
+  }
+}
+
+/* =====================================
+   FIX MOBILE SIDE SPACING – GALLERY
+===================================== */
+
+@media (max-width: 600px) {
+
+  /* Reduce outer spacing */
+  .gallery.card {
+    margin: 0 12px;        /* balanced side margin */
+    padding: 20px;
+  }
+
+  /* Make white cards properly centered */
+  .gallery-item {
+    width: 100%;
+    padding: 12px;
+    border-radius: 20px;
+  }
+
+  /* Ensure image fully respects container */
+  .gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+  }
+
+}
+
+/* =====================================
+   BASIC TESTS – DARKER TEXT
+===================================== */
+
+.service-panel h4 {
+  color: #1b1b1b;       /* darker heading */
+  font-weight: 600;
+}
+
+.service-tests li {
+  color: #222222;       /* 🔥 darker text */
+  font-weight: 500;     /* slightly stronger */
+}
+
+/* Optional – darker tick mark */
+.service-tests li::before {
+  color: var(--green);  /* keep brand color */
+  font-weight: 700;
 }
